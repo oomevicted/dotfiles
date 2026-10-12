@@ -1,0 +1,161 @@
+set $mod Mod1
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term foot
+set $menu wmenu-run \
+    -f "monospace 10" \
+    -N "000000" -n "e0e0e0" \
+    -M "000000" -m "ffffff" \
+    -S "e0e0e0" -s "000000"
+
+exec mako
+exec_always "pkill kanshi; exec kanshi"
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+assign [app_id="floorp"] workspace 1
+assign [app_id="firefox"] workspace 2
+assign [app_id="zathura"] workspace 5
+
+gaps inner 5
+gaps outer 0
+smart_gaps off
+
+default_border pixel 0
+default_floating_border pixel 0
+
+for_window [tiling] border pixel 0
+for_window [floating] border none
+smart_borders on
+
+output eDP-1 bg ~/Pictures/Wallpapers/wallp1_1.jpg fill
+output DP-4 bg ~/Pictures/Wallpapers/wallp1_1.jpg fill
+output DP-3 bg ~/Pictures/Wallpapers/wallp1_2.jpg fill
+
+font pango:monospace 10
+seat seat0 xcursor_theme "Bibata-Modern-Classic"
+exec_always gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic"
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+	gsettings set $gnome-schema gtk-theme 'Kanagawa-BL-LB-Dark-Dragon'
+	gsettings set $gnome-schema color-scheme 'prefer-dark'
+	gsettings set $gnome-schema icon-theme 'Kanagawa'
+	gsettings set $gnome-schema cursor-theme 'Bibata-Modern-Classic'
+	gsettings set $gnome-schema font-name 'monospace 10'
+		gsettings set org.gnome.desktop.wm.preferences button-layout ''
+}
+
+client.focused          #cccccc #000000 #cccccc #cccccc   #cccccc
+client.focused_inactive #1a1a1a #000000 #666666 #1a1a1a   #1a1a1a
+client.unfocused        #1a1a1a #000000 #666666 #1a1a1a   #1a1a1a
+client.urgent           #8b0000 #000000 #ffffff #8b0000   #8b0000
+
+input * {
+	xkb_layout us,ru
+	xkb_options "grp:caps_toggle"
+}
+
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+workspace 1 output DP-4
+workspace 2 output DP-4
+workspace 3 output DP-4
+workspace 4 output DP-4
+workspace 5 output DP-3
+
+bindsym --to-code $mod+d exec $menu
+bindsym --to-code $mod+Return exec foot
+
+bindsym --to-code $mod+Shift+r exec systemctl reboot
+bindsym --to-code $mod+Shift+p exec systemctl poweroff
+bindsym --to-code $mod+Escape exec swaylock \
+    --color 000000 \
+    --ring-color 333333 \
+    --inside-color 000000 \
+    --text-color e0e0e0 \
+    --key-hl-color e0e0e0 \
+    --bs-hl-color cc3333 \
+    --ring-ver-color e0e0e0 \
+    --inside-ver-color 000000 \
+    --ring-wrong-color cc3333 \
+    --inside-wrong-color 000000 \
+    --indicator-radius 100 \
+    --indicator-thickness 7
+    
+bindsym --to-code $mod+Shift+x exec grim ~/Pictures/Screenshots/Screen-$(date +%s).png
+bindsym --to-code $mod+Shift+z exec grim -g "$(slurp)" ~/Pictures/Screenshots/Screen-$(date +%s).png
+
+floating_modifier $mod normal
+bindsym --to-code $mod+q kill
+bindsym --to-code $mod+r reload
+bindsym --to-code $mod+Shift+e exec swaynag -t warning -m '' -B 'Yes, exit sway' 'swaymsg exit'
+
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up	
+bindsym --to-code $mod+$right focus right
+
+bindsym --to-code $mod+Shift+$left move left
+bindsym --to-code $mod+Shift+$down move down
+bindsym --to-code $mod+Shift+$up move up
+bindsym --to-code $mod+Shift+$right move right
+
+bindsym --to-code $mod+1 workspace number 1
+bindsym --to-code $mod+2 workspace number 2
+bindsym --to-code $mod+3 workspace number 3
+bindsym --to-code $mod+4 workspace number 4
+bindsym --to-code $mod+5 workspace number 5
+
+bindsym --to-code $mod+Shift+1 move container to workspace number 1
+bindsym --to-code $mod+Shift+2 move container to workspace number 2
+bindsym --to-code $mod+Shift+3 move container to workspace number 3
+bindsym --to-code $mod+Shift+4 move container to workspace number 4
+bindsym --to-code $mod+Shift+5 move container to workspace number 5
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
+
+bindsym --locked XF86AudioMute exec pamixer -t
+bindsym --locked XF86AudioLowerVolume exec pamixer -d 10
+bindsym --locked XF86AudioRaiseVolume exec pamixer -i 10
+bindsym --locked XF86AudioMicMute exec pamixer --default-source -t
+
+bindsym --to-code $mod+b splith
+bindsym --to-code $mod+v splitv
+
+bindsym --to-code $mod+f fullscreen
+bindsym --to-code $mod+s floating toggle
+bindsym --to-code $mod+space focus mode_toggle
+	
+bindsym --to-code $mod+minus move scratchpad
+bindsym --to-code $mod+Shift+minus scratchpad show
+
+bar {
+    position top
+    tray_output none
+    status_command ~/.config/sway/bar.sh
+    
+    font monospace 10
+    
+    colors {
+        background #000000
+        statusline #aaaaaa
+        separator  #222222
+
+        focused_workspace   #cccccc #cccccc #000000
+        active_workspace    #222222 #222222 #aaaaaa
+        inactive_workspace  #0a0a0a #0a0a0a #555555
+        urgent_workspace    #8b0000 #8b0000 #ffffff
+    }
+}
+
+include /etc/sway/config.d/*
