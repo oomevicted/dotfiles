@@ -1,0 +1,9 @@
+profile nomad {
+  output eDP-1 enable
+}
+
+profile docked {
+  output eDP-1 disable
+  output DP-3 mode 1920x1080@60Hz position 0,0 transform 90
+  output DP-4 mode 2560x1440@60Hz position 1080,0
+}
