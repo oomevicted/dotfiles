@@ -1,0 +1,33 @@
+set previewer ~/.config/lf/previewer.sh
+set sixel true
+set drawbox true
+set ratios 1:2:3
+set info size:time
+set hidden false
+set ignorecase true
+set scrolloff 5
+
+map . set hidden!
+map <enter> open
+
+cmd open ${{
+    mime=$(file -b --mime-type "$f")
+    
+    case $mime in
+        image/*) 
+            setsid imv-dir "$f" > /dev/null 2>&1 & 
+            ;;
+        video/*) 
+            setsid mpv "$f" > /dev/null 2>&1 & 
+            ;;
+        application/pdf|application/epub+zip|image/vnd.djvu) 
+            setsid zathura "$f" > /dev/null 2>&1 & 
+            ;;
+        text/*) 
+            ${EDITOR:-nvim} "$f" 
+            ;;
+        *) 
+            setsid xdg-open "$f" > /dev/null 2>&1 & 
+            ;;
+    esac
+}}
