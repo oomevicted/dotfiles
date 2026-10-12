@@ -1,0 +1,13 @@
+font=monospace 10
+background-color=#000000d9
+text-color=#aaaaaa
+border-color=#222222
+border-size=1
+border-radius=0
+padding=10
+default-timeout=10000
+
+[urgency=critical]
+border-color=#8b0000
+text-color=#8b0000
+default-timeout=0
