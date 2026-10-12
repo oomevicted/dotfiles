@@ -1,0 +1,56 @@
+{
+  "logo": {
+    "type": "auto",
+    "padding": {
+      "right": 2
+    }
+  },
+
+  "display": {
+    "separator": "  "
+  },
+
+  "modules": [
+    "title",
+    "separator",
+
+    "host",
+    "os",
+    "wm",
+
+    "kernel",
+    "uptime",
+    "packages",
+
+    "shell",
+    "terminal",
+
+    "cpu",
+    "gpu",
+
+    "memory",
+    "disk",
+
+    "break"
+  ],
+
+  "cpu": {
+    "format": "{name}"
+  },
+
+  "gpu": {
+    "format": "{name}"
+  },
+
+  "memory": {
+    "format": "{used} / {total} ({percentage})"
+  },
+
+  "disk": {
+    "format": "{used} / {total}"
+  },
+
+  "wm": {
+    "format": "{name}"
+  }
+}
