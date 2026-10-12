@@ -1,0 +1,37 @@
+usermod -aG sudo $USER
+sudo usermod -L root
+
+sudo cat << 'EOF' | sudo tee /etc/apt/sources.list
+deb http://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security trixie-security main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian/ trixie-updates main contrib non-free non-free-firmware
+EOF
+
+echo 'APT::Acquire::Max-Parallel-Downloads "16";' | sudo tee /etc/apt/apt.conf.d/99parallel-downloads
+echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
+
+sudo apt update && sudo apt upgrade -y && sudo apt install -y \
+fish git firefox-esr sway swaylock foot slurp grim imv mpv wmenu lf qbittorrent \
+pamixer pavucontrol ufw intel-microcode linux-headers-amd64 firmware-linux poppler-utils \
+firmware-misc-nonfree kanshi unzip zip lm-sensors tlp tlp-rdw nmap ffmpeg chafa fwupd xwayland \
+libglib2.0-bin xdg-desktop-portal-wlr curl neovim build-essential ripgrep zathura zathura-pdf-poppler \
+mako-notifier brightnessctl pipewire pipewire-pulse wireplumber pipewire-alsa pipewire-audio pipewire-jack bat \
+libnotify-bin fd-find python3-pip python3-venv htop fastfetch qtwayland5 qt6-wayland adwaita-qt qt6-gtk-platformtheme 
+
+mkdir -p ~/.config/{fish,nvim,kanshi,lf,sway,foot,mako,zathura,fastfetch,pipewire/pipewire.conf.d} ~/.themes ~/.icons ~/Pictures/{Wallpapers,Screenshots}
+touch ~/.config/nvim/init.lua ~/.config/kanshi/config ~/.config/mako/config ~/.config/lf/{lfrc,previewer.sh} ~/.config/sway/{bar.sh,config} ~/.config/foot/foot.ini ~/.config/zathura/zathurarc ~/.config/fastfetch/config.jsonc ~/.config/pipewire/pipewire.conf.d/clock.conf
+chmod +x ~/.config/lf/previewer.sh ~/.config/sway/bar.sh
+
+fish_config
+echo 'set -g fish_greeting ""' >> ~/.config/fish/config.fish
+
+sudo tlp start
+sudo sensors-detect --auto
+systemctl --user --now enable pipewire pipewire-pulse wireplumber
+sudo systemctl enable --now ufw && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw --force enable && sudo ufw status verbose
+
+sudo vi /etc/systemd/logind.conf
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+sudo systemctl restart systemd-logind
