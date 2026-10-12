@@ -1,0 +1,45 @@
+set guioptions "s"
+set window-title-basename "true"
+set adjust-open "width"
+set pages-per-row 1
+set scroll-page-aware "true"
+set scroll-full-frame "false"
+set scroll-step 60
+set render-loading "true"
+set dbmanager "sqlite"
+set selection-clipboard "clipboard"
+
+set recolor "false"
+set recolor-keephue "true"
+set recolor-reverse-video "true"
+
+set default-bg "#000000"
+set default-fg "#cccccc"
+set recolor-lightcolor "#000000"
+set recolor-darkcolor "#cccccc"
+
+set statusbar-bg "#000000"
+set statusbar-fg "#cccccc"
+
+set highlight-color "rgba(85, 85, 85, 0.6)"
+set highlight-active-color "rgba(150, 150, 150, 0.8)"
+set highlight-fg "#ffffff"
+
+set completion-bg "#333333"
+set completion-fg "#cccccc"
+set completion-highlight-bg "#555555"
+set completion-highlight-fg "#ffffff"
+
+set notification-bg "#333333"
+set notification-fg "#cccccc"
+set notification-error-bg "#8b0000"
+set notification-error-fg "#ffffff"
+set notification-warning-bg "#555555"
+set notification-warning-fg "#ffffff"
+
+map r recolor
+map R rotate rotate-cw
+map [normal] u scroll half-up
+map [normal] d scroll half-down
+map [normal] D toggle_page_mode
+map [normal] f toggle_fullscreen
