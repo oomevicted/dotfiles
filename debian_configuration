@@ -16,7 +16,7 @@ pamixer pavucontrol ufw intel-microcode linux-headers-amd64 firmware-linux poppl
 firmware-misc-nonfree kanshi unzip zip lm-sensors tlp tlp-rdw nmap ffmpeg chafa fwupd xwayland \
 libglib2.0-bin xdg-desktop-portal-wlr curl neovim build-essential ripgrep zathura zathura-pdf-poppler \
 mako-notifier brightnessctl pipewire pipewire-pulse wireplumber pipewire-alsa pipewire-audio pipewire-jack bat \
-libnotify-bin fd-find python3-pip python3-venv htop fastfetch qtwayland5 qt6-wayland adwaita-qt qt6-gtk-platformtheme 
+libnotify-bin fd-find python3-pip python3-venv htop fastfetch qtwayland5 qt6-wayland adwaita-qt qt6-gtk-platformtheme qpwgraph
 
 mkdir -p ~/.config/{fish,nvim,kanshi,lf,sway,foot,mako,zathura,fastfetch,pipewire/pipewire.conf.d} ~/.themes ~/.icons ~/Pictures/{Wallpapers,Screenshots}
 touch ~/.config/nvim/init.lua ~/.config/kanshi/config ~/.config/mako/config ~/.config/lf/{lfrc,previewer.sh} ~/.config/sway/{bar.sh,config} ~/.config/foot/foot.ini ~/.config/zathura/zathurarc ~/.config/fastfetch/config.jsonc ~/.config/pipewire/pipewire.conf.d/clock.conf
