@@ -36,6 +36,10 @@ HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
 sudo systemctl restart systemd-logind
 
+sudo vi /etc/security/limits.d/99-audio.conf
+@audio - rtprio 95
+@audio - memlock unlimited
+
 sudo vi /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i915.enable_psr=0"
 sudo update-grub
