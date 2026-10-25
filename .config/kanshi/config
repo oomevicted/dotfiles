@@ -1,9 +1,9 @@
 profile nomad {
-  output eDP-1 enable
+    output eDP-1 enable
 }
 
 profile docked {
-  output eDP-1 disable
-  output DP-3 mode 1920x1080@50Hz position 0,0 transform 90
-  output DP-4 mode 2560x1440@60Hz position 1080,0
+    output eDP-1 disable
+    output "Xiaomi Corporation Mi Monitor 5365850061139" mode 1920x1080@50Hz position 0,0 transform 90
+    output "Philips Consumer Electronics Company 27M1N5500ZA UHB2247001550" mode 2560x1440@60Hz position 1080,0
 }
