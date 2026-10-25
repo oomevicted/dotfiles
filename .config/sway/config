@@ -32,8 +32,8 @@ for_window [floating] border none
 smart_borders on
 
 output eDP-1 bg ~/Pictures/Wallpapers/wallp1_1.jpg fill
-output DP-4 bg ~/Pictures/Wallpapers/wallp1_1.jpg fill
-output DP-3 bg ~/Pictures/Wallpapers/wallp1_2.jpg fill
+output "Xiaomi Corporation Mi Monitor 5365850061139" bg ~/Pictures/Wallpapers/wallp1_2.jpg fill
+output "Philips Consumer Electronics Company 27M1N5500ZA UHB2247001550" bg ~/Pictures/Wallpapers/wallp1_1.jpg fill
 
 font pango:monospace 10
 seat seat0 xcursor_theme "Bibata-Modern-Classic"
@@ -66,15 +66,14 @@ input type:touchpad {
     middle_emulation enabled
 }
 
-workspace 1 output DP-4
-workspace 2 output DP-4
-workspace 3 output DP-4
-workspace 4 output DP-4
-workspace 5 output DP-3
+workspace 1 output "Philips Consumer Electronics Company 27M1N5500ZA UHB2247001550"
+workspace 2 output "Philips Consumer Electronics Company 27M1N5500ZA UHB2247001550"
+workspace 3 output "Philips Consumer Electronics Company 27M1N5500ZA UHB2247001550"
+workspace 4 output "Philips Consumer Electronics Company 27M1N5500ZA UHB2247001550"
+workspace 5 output "Xiaomi Corporation Mi Monitor 5365850061139"
 
 bindsym --to-code $mod+d exec $menu
 bindsym --to-code $mod+Return exec foot
-
 bindsym --to-code $mod+Shift+r exec systemctl reboot
 bindsym --to-code $mod+Shift+p exec systemctl poweroff
 bindsym --to-code $mod+Escape exec swaylock \
