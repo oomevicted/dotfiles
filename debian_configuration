@@ -31,7 +31,8 @@ systemctl --user --now enable pipewire pipewire-pulse wireplumber
 sudo systemctl enable --now ufw && sudo ufw default deny incoming && sudo ufw default allow outgoing && sudo ufw --force enable && sudo ufw status verbose
 
 sudo vi /etc/systemd/logind.conf
-HandleLidSwitch=ignore
+[Login]
+HandleLidSwitch=suspend
 HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
 sudo systemctl restart systemd-logind
